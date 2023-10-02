@@ -13,73 +13,100 @@
     </body>
     </html>
     <!--
-        과제 정답해설
+        6일차 과제 정답해설
          
-        // Last
-
-type Last = <T>(items: T[]) => T;
-
-const last: Last = (items) => items[items.length - 1];
-
-const lastItem = last([1, 2, 3, 4, 5]);
-
-console.log(`Last: ${lastItem}`);
-
-// Prepend
-
-type Prepend = <T>(items: T[], item: T) => T[];
-
-const prepend: Prepend = (items, item) =>  [item, ...items]
-
-const items = [1, 2, 3, 4, 5];
-
-const newItems = prepend(items,0);
-
-console.log(`Prepend: ${newItems}`)
-
-//  Mix
-
-type Mix = <T>(a: T[], b: T[]) => T[]
-
-const mix: Mix = (firstArr, secondArr) => [...firstArr, ...secondArr];
-
-const mixed = mix([1, 2, 3], [4, 5, 6]);
-
-console.log(`Mix: ${mixed}`)
-
-// Count
-
-type Count = <T>(items: T[]) => number;
-
-const count: Count = (items) => items.length;
-
-const counted = count([1, 2, 3, 4, 5]);
-
-console.log(`Count :${counted}`);
-
-// FindIndex
-
-type FindIndex = <T>(items: T[], item:T) => number | boolean;
-
-const find: FindIndex = (items, item) => {
-    const index = items.indexOf(item)
-    return  index === -1 ? false : index;
+        type Word = {
+  term:string;
+  definition:string;
 }
 
-const found = find([1, 2, 3, 4], 1);
+type Words = {
+  [key: string]: string;
+};
 
-console.log(`FindIndex (found): ${found}`);
+class Dict {
+  private words: Words;
+  constructor() {
+    this.words = {};
+  }
+  add(term: string, definition: string) {
+    if (!this.get(term)) {
+      this.words[term] = definition;
+    }
+  }
+  get(term: string) {
+    return this.words[term];
+  }
+  delete(term: string) {
+    delete this.words[term];
+  }
+  update(term: string, newDef: string) {
+    if (this.get(term)) {
+      this.words[term] = newDef;
+    }
+  }
+  showAll() {
+    let output = "\n--- Dictionary Content ---\n"
+    Object.keys(this.words).forEach((term) =>
+      output += `${term}: ${this.words[term]}\n`
+    );
+    output += "--- End of Dictionary ---\n"
+    console.log(output);
+  }
+  count() {
+    return Object.keys(this.words).length;
+  }
+  upsert(term:string, definition:string){
+    if(this.get(term)){
+      this.update(term, definition);
+    } else {
+      this.add(term, definition);
+    }
+  }
+  exists(term:string){
+    return this.get(term) ? true : false;
+  }
+  bulkAdd(words: Word[]){
+    words.forEach(word => this.add(word.term, word.definition))
+  }
+  bulkDelete(terms: string[]){
+    terms.forEach(term => this.delete(term));
+  }
+}
 
-const notFound = find([1, 2, 3, 4], 5);
+const dictionary = new Dict();
 
-console.log(`FindIndex (not found): ${notFound}`);
+const KIMCHI = "김치"
 
-// Slice
 
-type Slice = <T>(items: T[], start: number, end?:number) => T[]
+// Add
+dictionary.add(KIMCHI, "밋있는 한국 음식");
+dictionary.showAll();
 
-const slice : Slice = (items, start, end) => items.slice(start, end);
+// Count
+console.log(dictionary.count());
 
-const sliced = slice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 3, 6);
+// Update
+dictionary.update(KIMCHI, "밋있는 한국 음식!!!");
+console.log(dictionary.get(KIMCHI));
 
-console.log(`Slice ${sliced}`); -->
+// Delete
+dictionary.delete(KIMCHI);
+console.log(dictionary.count());
+
+// Upsert
+dictionary.upsert(KIMCHI, "밋있는 한국 음식!!!");
+console.log(dictionary.get(KIMCHI))
+dictionary.upsert(KIMCHI, "진짜 밋있는 한국 음식!!!");
+console.log(dictionary.get(KIMCHI))
+
+// Exists
+console.log(dictionary.exists(KIMCHI))
+
+// Bulk Add
+dictionary.bulkAdd([{term:"A", definition:"B"}, {term:"X", definition:"Y"}]);
+dictionary.showAll();
+
+// Bulk Delete
+dictionary.bulkDelete(["A", "X"])
+dictionary.showAll(); -->
