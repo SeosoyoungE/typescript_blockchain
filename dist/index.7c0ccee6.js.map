@@ -1,0 +1,1 @@
+{"mappings":"AAAA,SAAS,IAAI,IAAI,EAAE,IAAI;IACnB,QAAQ,GAAG,CAAC,OAAO;AACvB;AACA,IAAI,GAAG","sources":["app.js"],"sourcesContent":["function add(num1, num2) {\n    console.log(num1 + num2);\n}\nadd(1, 2);\n"],"names":[],"version":3,"file":"index.7c0ccee6.js.map","sourceRoot":"/__parcel_source_root/"}
