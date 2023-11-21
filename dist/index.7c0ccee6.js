@@ -1,16 +1,8 @@
-function playerMaker(name) {
-    return {
-        name: name
-    };
-}
-var soyoung = playerMaker("soyoung");
-//readonly오류
-soyoung.name = "123";
-//배열도 적용가능
-var names = [
+//여러타입을 한배열에 넣게하는 Tuple
+var soyoung = [
     "soyoung",
-    "hojin",
-    "jisoo"
+    25,
+    false
 ];
 
 //# sourceMappingURL=index.7c0ccee6.js.map
