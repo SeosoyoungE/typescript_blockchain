@@ -1,22 +1,10 @@
-// a의 타입을 추론해줌
-var a = "hello";
-a = "bye";
-a = 123; //타입에러
-// 타입을 직접 정의해줄수도 있다.
-var b = "x"; //타입에러
-//배열도
-var c = [
-    1,
-    2,
-    3,
-    4
-];
-c.push("abc"); //타입에러
-//객체도
+//객체 타입 정의 방법
 var player = {
     name: "soyoung"
 };
-player.name = 1; //타입에러
-player.hello(); //에러
+//age가 undefined일수도 있기때문에 에러
+player.age;
+//존재여부를 확인하면 에러가 나지않음
+player.age && player.age;
 
 //# sourceMappingURL=index.7c0ccee6.js.map
