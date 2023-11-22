@@ -1,1 +1,1 @@
-{"mappings":"AAAA,SAAS;IACL,MAAM,IAAI,MAAM;AACpB;AACA","sources":["app.js"],"sourcesContent":["function hello() {\n    throw new Error(\"XXX\");\n}\nhello();\n"],"names":[],"version":3,"file":"index.7c0ccee6.js.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAAA,IAAI,MAAM,SAAU,CAAC,EAAE,CAAC;IAAI,OAAO,IAAI;AAAG","sources":["app.js"],"sourcesContent":["var add = function (a, b) { return a + b; };\n"],"names":[],"version":3,"file":"index.7c0ccee6.js.map","sourceRoot":"/__parcel_source_root/"}
