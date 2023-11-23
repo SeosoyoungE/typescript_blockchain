@@ -1,11 +1,13 @@
-//매개변수(parameter) 갯수가 다른 오버로딩
-type Add = {
-  (a: number, b: number): number;
-  (a: number, b: number, c: number): number;
+//제네릭 사용법
+type SuperPrint = {
+  <T>(arr: T[]): void;
 };
 
-//매개변수가 다른 함수의 타입을 오버로딩하려면 매개변수(optional)에 ?와 타입을 지정해주어야한다.
-const add: Add = (a, b, c?: number) => {
-  if (c) return a + b + c;
-  return a + b;
+const superPrint: SuperPrint = (arr) => {
+  arr.forEach((element) => {
+    console.log(element);
+  });
 };
+const arr = [0, 1, 2, 3, 4];
+superPrint(arr);
+superPrint([true, false, true]);
