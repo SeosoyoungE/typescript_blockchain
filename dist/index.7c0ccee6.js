@@ -1,57 +1,47 @@
-//arr
-var arr1 = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    10
-];
-var arr2 = [
-    "a",
-    "b",
-    "c"
-];
-//function
-var last = function(arr) {
-    return arr[arr.length - 1];
-};
-var prepend = function(arr, item) {
-    var newArr = [];
-    newArr.push(item);
-    for(var i = 0; i < arr.length; i++)newArr.push(arr[i]);
-    return newArr;
-};
-var mix = function(arr1, arr2) {
-    var newArr = [];
-    arr1.forEach(function(i) {
-        newArr.push(i);
-    });
-    arr2.forEach(function(i) {
-        newArr.push(i);
-    });
-    return newArr;
-};
-var count = function(arr) {
-    return arr.length;
-};
-var findIndex = function(arr, item) {
-    for(var i = 0; i < arr.length; i++){
-        if (arr[i] === item) return i;
+var __extends = this && this.__extends || function() {
+    var extendStatics = function(d, b) {
+        extendStatics = Object.setPrototypeOf || ({
+            __proto__: []
+        }) instanceof Array && function(d, b) {
+            d.__proto__ = b;
+        } || function(d, b) {
+            for(var p in b)if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];
+        };
+        return extendStatics(d, b);
+    };
+    return function(d, b) {
+        if (typeof b !== "function" && b !== null) throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+//abstract class
+var User = /** @class */ function() {
+    //따로 class에 parameter를 선언할 필요 없이 constructor에서 한번에 parameter 선언 및 초기화
+    function User(firstName, lastName, nickname) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickname = nickname;
     }
-    return null;
-};
-var slice = function(arr, startIndex, endIndex) {
-    var newArr = [];
-    if (endIndex) for(var i = startIndex; i < endIndex; i++)newArr.push(arr[i]);
-    else for(var i = startIndex; i < arr.length; i++)newArr.push(arr[i]);
-    return newArr;
-}; //test
- //console.log(last(arr1));
- //console.log(prepend(arr1,100));
- //console.log(mix(arr1,arr2));
- //console.log(count(arr1));
- //console.log(findIndex(arr1,7));
- //console.log(slice(arr1,3,5));
+    User.prototype.getFullName = function() {
+        return "".concat(this.firstName, " ").concat(this.lastName);
+    };
+    return User;
+}();
+var Player = /** @class */ function(_super) {
+    __extends(Player, _super);
+    function Player() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Player.prototype.getNickname = function() {
+        return this.nickname;
+    };
+    return Player;
+}(User);
+var soyoung = new Player("seo", "soyoung", "soyoungee");
+console.log(soyoung.getFullName);
 
 //# sourceMappingURL=index.7c0ccee6.js.map
